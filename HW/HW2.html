@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>註冊表單</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      padding-top: 50px;
+    }
+    .form-container {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin: 12px 0 5px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .gender-group {
+      display: flex;
+      gap: 10px;
+      margin: 5px 0 10px;
+    }
+    .checkbox-group {
+      margin: 10px 0;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #3399ff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #007acc;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>註冊表單</h2>
+    <form id="registerForm">
+      <label for="name">姓名</label>
+      <input type="text" id="name" required />
+
+      <label for="email">電子信箱</label>
+      <input type="email" id="email" required />
+
+      <label for="password">密碼</label>
+      <input type="password" id="password" required minlength="6" />
+
+      <label for="confirm">確認密碼</label>
+      <input type="password" id="confirm" required />
+
+      <label>性別</label>
+      <div class="gender-group">
+        <label><input type="radio" name="gender" value="男" required /> 男</label>
+        <label><input type="radio" name="gender" value="女" /> 女</label>
+      </div>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="agree" /> 我已閱讀並同意使用條款</label>
+      </div>
+
+      <button type="submit">註冊</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+      const agree = document.getElementById("agree").checked;
+      const gender = document.querySelector('input[name="gender"]:checked');
+
+      if (!name) {
+        alert("請輸入姓名");
+        return;
+      }
+
+      if (!email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
+        alert("請輸入有效的電子信箱");
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("密碼需至少6個字元");
+        return;
+      }
+
+      if (password !== confirm) {
+        alert("兩次輸入的密碼不一致");
+        return;
+      }
+
+      if (!gender) {
+        alert("請選擇性別");
+        return;
+      }
+
+      if (!agree) {
+        alert("請先同意使用條款");
+        return;
+      }
+
+      alert(`註冊成功！歡迎，${name}`);
+    });
+  </script>
+</body>
+</html>
