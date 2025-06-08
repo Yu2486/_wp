@@ -1,0 +1,30 @@
+body {
+  text-align: center;
+  font-family: sans-serif;
+  background: #fffaf0;
+}
+h1 {
+  color: #444;
+}
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+  justify-content: center;
+  margin: 20px auto;
+}
+.hole {
+  width: 100px;
+  height: 100px;
+  background: #c0c0c0;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+.hole.mole {
+  background: url('https://i.imgur.com/jEwqg7D.png') center/cover no-repeat;
+}
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
